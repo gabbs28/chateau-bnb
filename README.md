@@ -1,11 +1,11 @@
-# ImpBnB
+# ChateauBnB
 
 ## Database Schema Design
 
 MARK DOWN SYNTAX
-![impbnb-database-schema]
+![ChateauBnB-database-schema]
 
-[impbnb-database-schema]: ./images/SCHEMA-1.jpg
+[ChateauBnB-database-schema]: ./images/SCHEMA-1.jpg
 
 ## API Documentation
 
