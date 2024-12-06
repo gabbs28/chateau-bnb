@@ -1,0 +1,21 @@
+.signup-form-page {
+    font-family: Arial, sans-serif;
+}
+
+.signup-form-page p.error {
+    color: red;
+}
+
+.signup-form-page h1 {
+    font-weight: bold;
+}
+
+.signup-form-page button.feisty {
+    font-weight: bold;
+    color: red;
+}
+
+.signup-form-page button.happy {
+    font-weight: bold;
+    color: purple;
+}
