@@ -1,0 +1,21 @@
+.navigation {
+    font-family: Arial, sans-serif;
+}
+
+.navigation p.error {
+    color: red;
+}
+
+.navigation h1 {
+    font-weight: bold;
+}
+
+.navigation button.feisty {
+    font-weight: bold;
+    color: red;
+}
+
+.navigation button.happy {
+    font-weight: bold;
+    color: purple;
+}
