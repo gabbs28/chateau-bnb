@@ -1,10 +1,9 @@
-import './SignupFormPage.css';
 
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import * as sessionActions from '../../store/session';
-import './SignupForm.css';
+import './SignupFormModal.css';
 
 function SignupFormModal() {
   const dispatch = useDispatch();
