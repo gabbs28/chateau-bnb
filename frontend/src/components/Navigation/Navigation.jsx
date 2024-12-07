@@ -4,7 +4,7 @@ import './Navigation.css';
 
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import ProfileButton from './ProfileButton';
+import ProfileButton from './ProfileButton/ProfileButton';
 import * as sessionActions from '../../store/session';
 
 function Navigation({ isLoaded }) {

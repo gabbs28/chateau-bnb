@@ -1,0 +1,21 @@
+.profile-button {
+    font-family: Arial, sans-serif;
+}
+
+.profile-button p.error {
+    color: red;
+}
+
+.profile-button h1 {
+    font-weight: bold;
+}
+
+.profile-button button.feisty {
+    font-weight: bold;
+    color: red;
+}
+
+.profile-button button.happy {
+    font-weight: bold;
+    color: purple;
+}
