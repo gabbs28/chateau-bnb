@@ -1,0 +1,21 @@
+.delete-spot-and-review {
+    font-family: Arial, sans-serif;
+}
+
+.delete-spot-and-review p.error {
+    color: red;
+}
+
+.delete-spot-and-review h1 {
+    font-weight: bold;
+}
+
+.delete-spot-and-review button.feisty {
+    font-weight: bold;
+    color: red;
+}
+
+.delete-spot-and-review button.happy {
+    font-weight: bold;
+    color: purple;
+}

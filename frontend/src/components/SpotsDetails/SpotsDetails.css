@@ -1,0 +1,21 @@
+.spots-details {
+    font-family: Arial, sans-serif;
+}
+
+.spots-details p.error {
+    color: red;
+}
+
+.spots-details h1 {
+    font-weight: bold;
+}
+
+.spots-details button.feisty {
+    font-weight: bold;
+    color: red;
+}
+
+.spots-details button.happy {
+    font-weight: bold;
+    color: purple;
+}
