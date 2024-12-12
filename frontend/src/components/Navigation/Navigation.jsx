@@ -12,6 +12,8 @@ function Navigation({ isLoaded }) {
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
+      <NavLink to="/spots/new">New Spots Form</NavLink>
+      <NavLink to="/spots/current">Manage User Spots</NavLink>
       {isLoaded && (
         <li>
           <ProfileButton user={sessionUser} />
