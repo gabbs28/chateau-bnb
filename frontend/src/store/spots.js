@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 // define action types
 /* name of the action (think url) that we want to use */
 const GET_SPOT = "spots/getSpot"
+const GET_ALL_SPOTS = "/spots"
 
 
 /* define actions
@@ -12,6 +13,13 @@ const getSpotAction = (spot) => {
     return {
         type: GET_SPOT,
         payload: spot
+    };
+}
+
+const getAllSpotsAction = (spots) => {
+    return {
+        type: GET_ALL_SPOTS,
+        payload: allSpots
     };
 }
 
@@ -27,12 +35,13 @@ export const getSpotData = (spotId) => {
     return async (dispatch) => {
         //api call
         return csrfFetch(`/api/spots/${spotId}`)
-            .json() //api communicates in json
+            .then(response => response.json()) //api communicates in json
             .then(spotData => {
                 dispatch(getSpotAction(spotData)); 
             })
     }
 }
+
 
 /*  this is the object the fetch call is returning (spotData)
 {
@@ -71,12 +80,25 @@ export const getSpotData = (spotId) => {
     }
 */
 
+export const getAllSpotsData = (spot) => {
+    return async (dispatch) => {
+        //api call
+        return csrfFetch(`/api/spots`)
+            .then(response => response.json()) //api communicates in json
+            .then(allSpotsData => {
+                dispatch(getAllSpotsAction(allSpotsData)); 
+            })
+    }
+}
+
 /* define a default state
 this will be the initial state of the store */
 //when I add an addition thunk I need to add another key/value
 const initialState = {
-    spot: null
+    spot: {},
+    allSpots: {}
 };
+
 
 
 /* define the reducer
@@ -90,6 +112,15 @@ const spotsReducer = (state = initialState, action) => {
       default:
         return state;
     }
-  };
+};
+
+const allspotsReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case GET_SPOT:
+            return { ...state, spot: action.payload }
+      default:
+        return state;
+    }
+};
 
 export default spotsReducer
