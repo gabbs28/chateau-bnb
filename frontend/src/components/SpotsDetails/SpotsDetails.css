@@ -6,7 +6,8 @@
 }
 
 .spots-details img {
-    border-radius: 13px;
+    border-top-left-radius: 13px;
+    border-bottom-left-radius: 13px;
 }
 
 .spots-details .table-box {

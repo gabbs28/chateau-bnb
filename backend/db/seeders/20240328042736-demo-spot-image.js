@@ -22,8 +22,23 @@ module.exports = {
       },
       {
         spotId: 3,
-        url: "https://a0.muscache.com/im/pictures/e7eb8b0b-53db-45da-94d0-ccbfcdf90f59.jpg?im_w=1200",
+        url: "https://www.castlerentals.net/wp-content/uploads/2024/11/DSC_0440-scaled.jpg",
         preview: true
+      },
+      {
+        spotId: 3,
+        url: "https://www.castlerentals.net/wp-content/uploads/2022/01/Lisheen7.jpg",
+        preview: false
+      },
+      {
+        spotId: 3,
+        url: "https://www.castlerentals.net/wp-content/uploads/2022/01/Lisheen3.jpg",
+        preview: false
+      },
+      {
+        spotId: 3,
+        url: "https://www.castlerentals.net/wp-content/uploads/2022/01/Lisheen4.jpg",
+        preview: false
       }
     ], { validate: true })
   },

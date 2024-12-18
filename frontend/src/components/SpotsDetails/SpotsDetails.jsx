@@ -22,6 +22,8 @@ function SpotsDetails() {
     //does the same as top code,  ? is optional chaining
     // let previewImg = spot.SpotImages?.find((spotImage) => spotImage.preview == true);
 
+    
+
 
     //useEffect is watching the variables in the [] for changes to break the looping
     //dispatch data to redux to update redux store
