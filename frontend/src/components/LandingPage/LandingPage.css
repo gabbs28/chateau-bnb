@@ -1,21 +1,6 @@
-.landing-page {
-    font-family: Arial, sans-serif;
-}
 
-.landing-page p.error {
-    color: red;
-}
-
-.landing-page h1 {
-    font-weight: bold;
-}
-
-.landing-page button.feisty {
-    font-weight: bold;
-    color: red;
-}
-
-.landing-page button.happy {
-    font-weight: bold;
-    color: purple;
+.landing-page .tiles {
+    display: flex;
+    flex-direction: row;
+    margin: 100px;
 }

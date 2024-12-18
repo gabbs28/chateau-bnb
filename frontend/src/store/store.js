@@ -5,9 +5,12 @@ import { thunk } from 'redux-thunk';
 import sessionReducer from './session';
 import spotsReducer from './spots';
 
+
+//all reducers are being combined 
+//argument that is passed to the useSelector function
 const rootReducer = combineReducers({
   session: sessionReducer, //const initialState = { user: null };
-  spots: spotsReducer
+  spots: spotsReducer  //const initialState = {spot: {}, allSpots: {}};
 });
 
 let enhancer;

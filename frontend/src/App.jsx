@@ -5,6 +5,7 @@ import Navigation from './components/Navigation/Navigation';
 import * as sessionActions from './store/session';
 
 import SpotsDetails from './components/SpotsDetails';
+import LandingPage from './components/LandingPage';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -23,14 +24,14 @@ function Layout() {
     </>
   );
 }
-
+//routes are the entry point
 const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
       {
         path: '/',
-        element: <h1>Welcome!</h1>
+        element: <LandingPage/>
       },
       {
         path: '/spots/:spotId',

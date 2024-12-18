@@ -1,9 +1,10 @@
 import { csrfFetch } from "./csrf";
 
 // define action types
-/* name of the action (think url) that we want to use */
+/* name of the action (think url) that we want to use 
+name at end of url shown bbe same as variable name*/
 const GET_SPOT = "spots/getSpot"
-const GET_ALL_SPOTS = "/spots"
+const GET_ALL_SPOTS = "spots/getAllSpots"
 
 
 /* define actions
@@ -16,7 +17,7 @@ const getSpotAction = (spot) => {
     };
 }
 
-const getAllSpotsAction = (spots) => {
+const getAllSpotsAction = (allSpots) => {
     return {
         type: GET_ALL_SPOTS,
         payload: allSpots
@@ -80,7 +81,7 @@ export const getSpotData = (spotId) => {
     }
 */
 
-export const getAllSpotsData = (spot) => {
+export const getAllSpotsData = () => {
     return async (dispatch) => {
         //api call
         return csrfFetch(`/api/spots`)
@@ -96,7 +97,7 @@ this will be the initial state of the store */
 //when I add an addition thunk I need to add another key/value
 const initialState = {
     spot: {},
-    allSpots: {}
+    allSpots: []
 };
 
 
@@ -104,23 +105,19 @@ const initialState = {
 /* define the reducer
 this is basically a router that will change the state based on the 
 action type (url) that is passed in to it when called by the thunk */
-
+//don't make another reducer, just add a new case statement
+//object keeys are case sensitive
 const spotsReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SPOT:
+            //this goes to useSelector
             return { ...state, spot: action.payload }
+        case GET_ALL_SPOTS:
+            return { ...state, allSpots: action.payload.Spots}
       default:
         return state;
     }
 };
 
-const allspotsReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case GET_SPOT:
-            return { ...state, spot: action.payload }
-      default:
-        return state;
-    }
-};
 
 export default spotsReducer
