@@ -1,5 +1,7 @@
 .navigation {
+    display: flex;
     justify-content: flex-end;
-    align-items: flex-start;
+    border-bottom-style: solid;
+    border-width: 1px;
     
 }

@@ -18,11 +18,17 @@ function SpotsDetails() {
     //const initialState = {spot: {}, allSpots: {}};
     const spot = useSelector(store => store.spots.spot)
 
-    let previewImg = isLoaded ? spot.SpotImages.find((spotImage) => spotImage.preview == true) : {};
+    let previewImg = isLoaded ? spot.SpotImages
+        .filter((spotImage) => spotImage.preview == true)
+        .shift() : {};
     //does the same as top code,  ? is optional chaining
     // let previewImg = spot.SpotImages?.find((spotImage) => spotImage.preview == true);
 
-    
+    let previewSmolImg = isLoaded ? spot.SpotImages
+        .filter((spotImage) => spotImage.preview == false)
+        .slice(0, 4) : [];
+
+    console.log("Return", spot.SpotImages) //returns array of objects
 
 
     //useEffect is watching the variables in the [] for changes to break the looping
@@ -42,28 +48,45 @@ function SpotsDetails() {
                 <h1>{spot.name}</h1>
                 <h3>{spot.city}, {spot.state}, {spot.country}</h3>
             </div>
-
-            <div>
-                <img src={previewImg.url} className={"img"} alt="IMG" width="555" height="520" />
+            <div className={'img-container'}>
+                <div>
+                    <img src={previewImg.url} className={"Large-img"} alt="IMG" width="560" height="371" />
+                </div>
+                <div>
+                    {previewSmolImg.map(spotImage => <img src={spotImage.url} className={"Small-img"} alt="IMG" width="277" height="183.69" />)}
+                </div>
             </div>
-            <p>
-                {spot.description}
-            </p>
-            <table className={'table-box'}>
-                <tbody>
-                    <tr>
-                        <td>${spot.price} night</td>
-                        <td>{spot.avgStarRating ?? 'New'}{/*make rating display stars*/}</td>
-                    </tr>
-                    <tr>
-                        <td colSpan={2}>
-                            <button>
-                                Reserve
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div className={'desc-reserve'} width="654" height="144">
+                <p>
+                    {spot.description}
+                </p>
+                <table className={'table-box'}>
+                    <tbody>
+                        <tr>
+                            <td>${spot.price} night</td>
+                            <td>{spot.avgStarRating ?? 'New'}{/*make rating display stars*/}</td>
+                        </tr>
+                        <tr>
+                            <td colSpan={2}>
+                                <button className={'Reserve'}>
+                                    Reserve
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <div className='review-container-title'>
+                    {spot.avgStarRating ?? 'New'}{/*make rating display stars*/}
+                </div>
+                <button className={'Post-Your-Review'}>
+                    Post Your Review
+                </button>
+            </div>
+            <div>
+                {/*Reviews*/}
+            </div>
 
 
         </div>

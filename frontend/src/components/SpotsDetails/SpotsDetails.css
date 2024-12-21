@@ -2,27 +2,46 @@
     display: flex;
     flex-direction: column;
     margin: 15px;
+    margin-left: 385px;
+    margin-right: 300px;
     
 }
 
-.spots-details img {
+.spots-details .Large-img {
     border-top-left-radius: 13px;
     border-bottom-left-radius: 13px;
+}
+
+
+.spots-details .Small-img {
+
+    padding-left: 8px;
 }
 
 .spots-details .table-box {
     display: flex;
     justify-content: flex-end;
-    outline: 2px solid black;
+    outline: 1px solid black;
     border-radius: 10px;
     max-width: fit-content;
     padding: 23px;
+    margin-right: 73px;
+    
 
 }
 
-.spots-details button {
+.spots-details .desc-reserve {
+    display: flex;
+    border-bottom-style: solid;
+    border-color: black;
+    border-width: 1px;
+    padding-bottom:  50px;
+    margin-top: 20px;
+}
+
+.spots-details .Reserve {
     background-color: red;
-    outline: .5px solid black;
+    border-style: outset;
     color: white;
     padding: 15px x 32px;
     text-decoration: none;
@@ -30,4 +49,29 @@
     font-size: 12px;
     min-width: 300px;
     min-height: 35px;
+    margin-top: 20px;
+}
+
+.spots-details .img-container {
+    display: flex;
+    padding-top: 24px;
+
+
+
+}
+
+.spots-details p {
+    padding-right: 130px;
+}
+
+.spots-details .review-container-title {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.spots-details .Post-Your-Review {
+    background-color: gray;
+    color: white;
+    border-style: outset;
+
 }
