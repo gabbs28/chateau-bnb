@@ -52,14 +52,21 @@ const router = createBrowserRouter([
       },
       {
         path: '/example',
-        element: <Example/>
+        element: <Example />
+      },
+      {
+        path: '/example-edit',
+        element: <Example spot={{
+          country: 'USA', 
+          price: 500
+        }} />
       }
     ]
   }
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return <RouterProvider router={router}/>;
 }
 
 export default App;
