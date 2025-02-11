@@ -7,6 +7,8 @@ import * as sessionActions from './store/session';
 import SpotsDetails from './components/SpotsDetails';
 import LandingPage from './components/LandingPage';
 import Example from './components/Example';
+import CreateSpotForm from './components/CreateSpotForm';
+import EditSpotForm from './components/EditSpotForm';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -40,26 +42,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/spots/new',
-        element: <h1>New Spots Form</h1>
+        element: <CreateSpotForm />
       },
       {
-        path: '/spots/:id/edit',
-        element: <h1>Edit Spots Form</h1>
+        path: '/spots/:spotId/edit',
+        element: <EditSpotForm />
       },
       {
         path: '/spots/current',
         element: <h1>Manage User Spots</h1>
-      },
-      {
-        path: '/example',
-        element: <Example />
-      },
-      {
-        path: '/example-edit',
-        element: <Example spot={{
-          country: 'USA', 
-          price: 500
-        }} />
       }
     ]
   }

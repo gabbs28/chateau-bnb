@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import './SpotsDetails.css';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { getSpotData } from '../../store/spots';
+
+import './SpotsDetails.css';
 
 function SpotsDetails() {
     const dispatch = useDispatch();

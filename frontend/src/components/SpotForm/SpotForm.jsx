@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import './Example.css';
+import './SpotForm.css';
 
-function Example({ spot = null }) {
+function SpotForm({ spot = null }) {
     //State to track value of various imp-ut fields
     //hooks, a lot of things that start with use are hooks
     //setVariable is a function
@@ -189,7 +189,7 @@ function Example({ spot = null }) {
 
     //The HTML that makes up the component
     return (
-        <div className={'example'}>
+        <div className={'spot-form'}>
             <div className='section'>
                 <div className='title'>
                     { spot ? "Update your Spot" : "Create a new Spot?" } <br />
@@ -408,4 +408,4 @@ function Example({ spot = null }) {
     )
 }
 
-export default Example;
+export default SpotForm;
