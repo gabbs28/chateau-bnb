@@ -20,17 +20,15 @@ function SpotsDetails() {
     //const initialState = {spot: {}, allSpots: {}};
     const spot = useSelector(store => store.spots.spot)
 
-    let previewImg = isLoaded ? spot.SpotImages
+    const previewImg = isLoaded ? spot.SpotImages
         .filter((spotImage) => spotImage.preview == true)
         .shift() : {};
     //does the same as top code,  ? is optional chaining
     // let previewImg = spot.SpotImages?.find((spotImage) => spotImage.preview == true);
 
-    let previewSmolImg = isLoaded ? spot.SpotImages
+    const previewSmolImg = isLoaded ? spot.SpotImages
         .filter((spotImage) => spotImage.preview == false)
         .slice(0, 4) : [];
-
-    console.log("Return", spot.SpotImages) //returns array of objects
 
 
     //useEffect is watching the variables in the [] for changes to break the looping

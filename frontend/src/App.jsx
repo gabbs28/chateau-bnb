@@ -6,7 +6,7 @@ import * as sessionActions from './store/session';
 
 import SpotsDetails from './components/SpotsDetails';
 import LandingPage from './components/LandingPage';
-import Example from './components/Example';
+
 import CreateSpotForm from './components/CreateSpotForm';
 import EditSpotForm from './components/EditSpotForm';
 

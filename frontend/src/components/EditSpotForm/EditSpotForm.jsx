@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import SpotForm from '../SpotForm';
@@ -30,10 +30,39 @@ function EditSpotForm() {
             .then(() => setIsLoaded(true))
     }, [dispatch, params.spotId]);
 
+    //returns one object with prview true
+    const previewImg = isLoaded ? spot.SpotImages
+        .filter((spotImage) => spotImage.preview)
+        .shift() : {};
+
+    //returns an array of image objects
+    const imgUrls = isLoaded ? spot.SpotImages
+        .filter((spotImage) => !spotImage.preview)
+        .slice(0, 4) : [];
+
+    // spot api gave us the imgs in nested object, 
+    // needed to extract that data and pass to forms in a simpler way
+    const data = {
+        country: spot.country,
+        address: spot.address,
+        city: spot.city,
+        state: spot.state,
+        lat: spot.lat,
+        lng: spot.lng,
+        description: spot.description,
+        name: spot.name,
+        price: spot.price,
+        "preview-image": previewImg.url,
+        "image-url-one": imgUrls[0]?.url,
+        "image-url-two": imgUrls[1]?.url,
+        "image-url-three": imgUrls[2]?.url,
+        "image-url-four": imgUrls[3]?.url
+    }
+ 
     //The HTML that makes up the component
     return isLoaded ? (
         <div className={'edit-spot-form'}>
-            <SpotForm spot={spot}/>
+            <SpotForm spot={data}/>
         </div>
     ) : (<h1>...loading</h1>) //love this add fun icon
 }

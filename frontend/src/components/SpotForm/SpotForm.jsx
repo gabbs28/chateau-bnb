@@ -15,35 +15,35 @@ function SpotForm({ spot = null }) {
     //if its a new form i want the fields to be empty 
     //and if I'm editing a form I want the information I submitted to be in the form
 
-    //spot?.stupidfuckingvariable means if spot is null return undefined instead of error
+    //spot?.variable means if spot is null return undefined instead of error
 
     const [country, setCountry] = useState(spot?.country ?? '');
-    const [streetAddress, setStreetAddress] = useState(spot?.streetAddress ?? "");
+    const [address, setAddress] = useState(spot?.address ?? "");
     const [city, setCity] = useState(spot?.city ?? "");
     const [state, setState] = useState(spot?.state ?? "");
-    const [latitude, setLatitude] = useState(spot?.latitude ?? "");
-    const [longitude, setLongitude] = useState(spot?.longitude ?? "");
+    const [lat, setLat] = useState(spot?.lat ?? "");
+    const [lng, setLng] = useState(spot?.lng ?? "");
     const [description, setDescription] = useState(spot?.description ?? "");
-    const [title, setTitle] = useState(spot?.title ?? "");
+    const [name, setName] = useState(spot?.name ?? "");
     const [price, setPrice] = useState(spot?.price ?? "");
-    const [previewImage, setPreviewImage] = useState(spot?.previewImage ?? "");
-    const [imageUrlOne, setImageUrlOne] = useState(spot?.imageUrlOne ?? "");
-    const [imageUrlTwo, setImageUrlTwo] = useState(spot?.imageUrlTwo ?? "");
-    const [imageUrlThree, setImageUrlThree] = useState(spot?.imageUrlThree ?? "");
-    const [imageUrlFour, setImageUrlFour] = useState(spot?.imageUrlFour ?? "");
+    const [previewImage, setPreviewImage] = useState(spot?.["preview-image"] ?? "");
+    const [imageUrlOne, setImageUrlOne] = useState(spot?.["image-url-one"] ?? "");
+    const [imageUrlTwo, setImageUrlTwo] = useState(spot?.["image-url-two"] ?? "");
+    const [imageUrlThree, setImageUrlThree] = useState(spot?.["image-url-three"] ?? "");
+    const [imageUrlFour, setImageUrlFour] = useState(spot?.["image-url-four"] ?? "");
 
     //State to track errors for various imp-ut fields
     //the value is the error message
     const [errors, setErrors] = useState(
         {
             'country': null,
-            'street-address': null,
+            'address': null,
             'city': null,
             'state': null,
-            'latitude': null,
-            'longitude': null,
+            'lat': null,
+            'lng': null,
             'description': null,
-            'title': null,
+            'name': null,
             'price': null,
             'preview-image': null,
             'image-url-one': null,
@@ -57,13 +57,13 @@ function SpotForm({ spot = null }) {
     //mapping between field name and state update
     const setters = {
         'country': setCountry,
-        'street-address': setStreetAddress,
+        'address': setAddress,
         'city': setCity,
         'state': setState,
-        'latitude': setLatitude,
-        'longitude': setLongitude,
+        'lat': setLat,
+        'lng': setLng,
         'description': setDescription,
-        'title': setTitle,
+        'name': setName,
         'price': setPrice,
         'preview-image': setPreviewImage,
         'image-url-one': setImageUrlOne,
@@ -112,8 +112,8 @@ function SpotForm({ spot = null }) {
         }
 
         //make sure street address is set
-        if (!streetAddress) {
-            current['street-address'] = "Address is required."
+        if (!address) {
+            current['address'] = "Address is required."
         }
 
         //make sure city is set
@@ -127,13 +127,13 @@ function SpotForm({ spot = null }) {
         }
 
         //make sure state is set
-        if (!latitude) {
-            current.latitude = "Latitude is required."
+        if (!lat) {
+            current.lat = "Lat is required."
         }
 
-        //make sure longitude is set
-        if (!longitude) {
-            current.longitude = "Longitude is required."
+        //make sure lng is set
+        if (!lng) {
+            current.lng = "Lng is required."
         }
         //make sure description is set
         if (!description) {
@@ -142,9 +142,9 @@ function SpotForm({ spot = null }) {
             current.description = "Description needs a minimum of 30 characters."
         }
 
-        //make sure title is set
-        if (!title) {
-            current.title = "Name is required."
+        //make sure name is set
+        if (!name) {
+            current.name = "Name is required."
         }
 
         //make sure price is set
@@ -211,15 +211,15 @@ function SpotForm({ spot = null }) {
                     {errors['country'] && (<p className='errors'>{errors['country']}</p>)}
                 </div>
                 <div className='field'>
-                    <label htmlFor='street-address'>Street Address</label>
+                    <label htmlFor='address'>Address</label>
                     <input
-                        name='street-address'
+                        name='address'
                         type='text'
                         placeholder='Address'
-                        value={streetAddress}
+                        value={address}
                         onChange={onInputChange}
                     />
-                    {errors['street-address'] && (<p className='errors'>{errors['street-address']}</p>)}
+                    {errors['address'] && (<p className='errors'>{errors['address']}</p>)}
                 </div>
                 <div className='field'>
                     <label htmlFor='city'>City</label>
@@ -244,26 +244,26 @@ function SpotForm({ spot = null }) {
                     {errors['state'] && (<p className='errors'>{errors['state']}</p>)}
                 </div>
                 <div className='field'>
-                    <label htmlFor='latitude'>Latitude</label>
+                    <label htmlFor='lat'>Latitude</label>
                     <input
-                        name='latitude'
+                        name='lat'
                         type='text'
-                        placeholder='latitude'
-                        value={latitude}
+                        placeholder='Lat'
+                        value={lat}
                         onChange={onInputChange}
                     />
-                    {errors['latitude'] && (<p className='errors'>{errors['latitude']}</p>)}
+                    {errors['lat'] && (<p className='errors'>{errors['lat']}</p>)}
                 </div>
                 <div className='field'>
-                    <label htmlFor='longitude'>Longitude</label>
+                    <label htmlFor='lng'>Longitude</label>
                     <input
-                        name='longitude'
+                        name='lng'
                         type='text'
-                        placeholder='longitude'
-                        value={longitude}
+                        placeholder='lng'
+                        value={lng}
                         onChange={onInputChange}
                     />
-                    {errors['longitude'] && (<p className='errors'>{errors['longitude']}</p>)}
+                    {errors['lng'] && (<p className='errors'>{errors['lng']}</p>)}
                 </div>
             </div>
             <div className='section'>
@@ -293,19 +293,19 @@ function SpotForm({ spot = null }) {
                     Create a title for your spot
                 </div>
                 <div className='sub-title'>
-                    Catch guests&apos; attention with a spot title that highlights what makes
+                    Catch guests&apos; attention with a spot name that highlights what makes
                     your place special.
                 </div>
                 <div className='field'>
-                    <label htmlFor='title'></label>
+                    <label htmlFor='name'></label>
                     <input
-                        name='title'
+                        name='name'
                         type='text'
                         placeholder='Name of your spot'
-                        value={title}
+                        value={name}
                         onChange={onInputChange}
                     />
-                    {errors['title'] && (<p className='errors'>{errors['title']}</p>)}
+                    {errors['name'] && (<p className='errors'>{errors['name']}</p>)}
                 </div>
             </div>
             <div className='section'>
