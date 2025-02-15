@@ -2,7 +2,7 @@ const express = require('express');
 
 const { requireAuth } = require('../../../utils/auth');
 
-const { Booking, Spot, SpotImage, User } = require('../../../db/models');
+const { Booking, Spot, SpotImage, User, sequelize} = require('../../../db/models');
 
 const { validateSpot } = require('./validate.js');
 
@@ -110,8 +110,24 @@ router.put("/:spotId", requireAuth, validateSpot, async(req, res, _next) => {
  if (spot.ownerId !== req.user.id) {
    return res.status(403).json({ message: "Forbidden" })
  }
-  
-await spot.update(req.body)
+
+const images = req.body.images
+  .map((img, index) => ({...img, spotId: req.params.spotId, preview: index === 0}));
+
+console.log(images)
+
+delete req.body.images;
+
+//wrap all db calls in a transaction (all works or all fails)
+//await sequelize.transaction(async t => {
+  await spot.update(req.body)//, {transaction: t})
+  await SpotImage.destroy({
+    where: {
+      spotId: req.params.spotId,
+    },
+  })//, {transaction: t});
+  await SpotImage.bulkCreate(images)//, {transaction: t});
+//});
 
   return res.json(spot)
 })

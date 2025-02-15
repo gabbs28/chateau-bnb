@@ -43,6 +43,7 @@ function EditSpotForm() {
     // spot api gave us the imgs in nested object, 
     // needed to extract that data and pass to forms in a simpler way
     const data = {
+        id: spot.id,
         country: spot.country,
         address: spot.address,
         city: spot.city,

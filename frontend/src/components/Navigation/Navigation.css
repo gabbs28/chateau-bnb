@@ -5,3 +5,13 @@
     border-width: 1px;
     
 }
+
+.navigation .nav-button {
+    background:white;
+    border: 1px solid lightgray; /*add my own border */
+    border-radius: 40px;
+    width: 83px;
+    height: 44px;
+    margin: 20px;
+
+}

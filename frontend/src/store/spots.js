@@ -5,6 +5,7 @@ import { csrfFetch } from "./csrf";
 name at end of url shown bbe same as variable name*/
 const GET_SPOT = "spots/getSpot"
 const GET_ALL_SPOTS = "spots/getAllSpots"
+const GET_SPOT_REVIEWS = "spots/getSpotReviews"
 
 
 /* define actions
@@ -23,6 +24,14 @@ const getAllSpotsAction = (allSpots) => {
         payload: allSpots
     };
 }
+
+const getSpotReviewsAction = (spotReviews) => {
+    return {
+        type: GET_SPOT_REVIEWS,
+        payload: spotReviews
+    }
+}
+
 
 /* define a thunk
 a function that will take in the dispatch, and whatever variable 
@@ -92,12 +101,43 @@ export const getAllSpotsData = () => {
     }
 }
 
+export const getSpotReviewsData = (spotId) => {
+    return async (dispatch) => {
+        return csrfFetch(`/api/spots/${spotId}`)
+        .then(response => response.json()) //api communicates in json
+            .then(spotReviewsData => {
+                dispatch(getSpotReviewsAction(spotReviewsData)); 
+            })
+    }
+}
+
+//takes in data, call spot POST API, returns parsed JSON if not error
+
+export const postSpot = async (spot) => {
+    return csrfFetch(`/api/spots`, {
+        method: 'POST',
+        body: JSON.stringify(spot)
+    })
+        .then(response => response.json())
+}
+
+//takes in data, call spot PUT API, returns parsed JSON if not error
+
+export const putSpot = async (id, spot) => {
+    return csrfFetch(`/api/spots/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(spot)
+    })
+        .then(response => response.json())
+}
+
 /* define a default state
 this will be the initial state of the store */
 //when I add an addition thunk I need to add another key/value
 const initialState = {
     spot: {},
-    allSpots: []
+    allSpots: [],
+    spotReviews: []
 };
 
 
@@ -114,6 +154,8 @@ const spotsReducer = (state = initialState, action) => {
             return { ...state, spot: action.payload }
         case GET_ALL_SPOTS:
             return { ...state, allSpots: action.payload.Spots}
+        case GET_SPOT_REVIEWS:
+            return { ...state, spotReviews: action.payload.Reviews}
       default:
         return state;
     }

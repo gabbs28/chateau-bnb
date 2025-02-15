@@ -2,8 +2,11 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import './SpotForm.css';
+import { postSpot, putSpot } from '../../store/spots';
 
 function SpotForm({ spot = null }) {
+    const navigate = useNavigate();
+
     //State to track value of various imp-ut fields
     //hooks, a lot of things that start with use are hooks
     //setVariable is a function
@@ -53,7 +56,7 @@ function SpotForm({ spot = null }) {
         }
     );
 
-    //stephen needs to reteach this
+
     //mapping between field name and state update
     const setters = {
         'country': setCountry,
@@ -92,13 +95,38 @@ function SpotForm({ spot = null }) {
         //errors dont show until button is clicked
         const valid = validate()
         if (!valid) {
-            console.log("not valid")
             return
         }
-        console.log("valid")
 
-        console.log(event)
-        //upon success navigate to the spot details page (spot/id)
+
+        const images = [
+            {url: previewImage, preview: true},
+            ...[
+                imageUrlOne, imageUrlTwo, imageUrlThree, imageUrlFour
+            ].filter((img) => img).map((img) => ({url: img}))
+        ];
+
+        const data = {
+            //same as saying 'country' : country
+            country,
+            address,
+            city,
+            state,
+            lat,
+            lng,
+            description,
+            name,
+            price,
+            images
+        }
+
+        const request = spot ? putSpot(spot.id, data) : postSpot(data)
+        request.then(json => navigate(`/spots/${json.id}`))
+            .catch(response => {
+                response.json()
+                    .then(json => setErrors(json.errors))
+            })
+
     }
 
     //performing the validations
@@ -151,7 +179,7 @@ function SpotForm({ spot = null }) {
         if (!price) {
             current.price = "Price is required."
         }
-        
+
         const imageValidate = (imgUrl) => {
             const extension = imgUrl.split(".").pop().toLowerCase()
 
@@ -180,7 +208,7 @@ function SpotForm({ spot = null }) {
 
         //Update error state
         setErrors(current)
-        console.log(Object.keys(current))
+
         return Object.keys(current).length === 0
 
     }
@@ -192,7 +220,7 @@ function SpotForm({ spot = null }) {
         <div className={'spot-form'}>
             <div className='section'>
                 <div className='title'>
-                    { spot ? "Update your Spot" : "Create a new Spot?" } <br />
+                    {spot ? "Update your Spot" : "Create a new Spot?"} <br />
                     Where is your place located?
                 </div>
                 <div className='sub-title'>
@@ -400,7 +428,7 @@ function SpotForm({ spot = null }) {
                 <button
                     onClick={onSubmit}
                 >
-                    { spot ? "Edit Spot" : "Create Spot" }
+                    {spot ? "Edit Spot" : "Create Spot"}
                 </button>
             </div>
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getSpotData } from '../../store/spots';
+import { getSpotData, getSpotReviewsData } from '../../store/spots';
 
 import './SpotsDetails.css';
 
@@ -19,6 +19,8 @@ function SpotsDetails() {
     //useSelector is used to access data from the store (redux)      
     //const initialState = {spot: {}, allSpots: {}};
     const spot = useSelector(store => store.spots.spot)
+    const spotReviews = useSelector(store => store.spots.spotReviews)
+  
 
     const previewImg = isLoaded ? spot.SpotImages
         .filter((spotImage) => spotImage.preview == true)
@@ -50,11 +52,14 @@ function SpotsDetails() {
             </div>
             <div className={'img-container'}>
                 <div>
-                    <img src={previewImg.url} className={"Large-img"} alt="IMG" width="560" height="371" />
+                    <img src={previewImg?.url} className={"Large-img"} alt="IMG" width="560" height="371" />
                 </div>
                 <div>
-                    {previewSmolImg.map(spotImage => <img src={spotImage.url} className={"Small-img"} alt="IMG" width="277" height="183.69" />)}
+                    {previewSmolImg.map(spotImage => <img key={spotImage.id} src={spotImage.url} className={"Small-img"} alt="IMG" width="277" height="183.69" />)}
                 </div>
+            </div>
+            <div className={'host'}>
+                Hosted by {spot.Owner.firstName} {spot.Owner.lastName}
             </div>
             <div className={'desc-reserve'} width="654" height="144">
                 <p>
