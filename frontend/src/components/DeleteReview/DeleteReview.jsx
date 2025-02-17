@@ -1,10 +1,12 @@
 import DeleteResource from '../DeleteResource';
 import { getSpotData, getSpotReviewsData } from '../../store/spots';
 import {deleteReview} from '../../store/reviews';
+import { useDispatch } from 'react-redux';
 
 import './DeleteReview.css';
 
 function DeleteReview({reviewId, spotId}) {
+    const dispatch = useDispatch();
 
     //The HTML that makes up the component
     return (

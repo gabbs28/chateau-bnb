@@ -38,10 +38,10 @@ function SpotTile({ spot = null, manage = false}) {
                         <p><span className='be-bold'>${spot.price}</span> night</p>
                     </div>
                     <div hidden={!manage}>
-                        <button onClick={updateSpot}>
+                        <button className={"grey"} onClick={updateSpot}>
                             Update
                         </button>
-                        <button onClick={deleteSpot}>
+                        <button className={"grey"} onClick={deleteSpot}>
                             Delete
                         </button>
                     </div>

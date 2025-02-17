@@ -29,7 +29,7 @@ function ManageUserSpots() {
     return isLoaded ? (
         <div className={'manage-user-spots'}>
             <h1>MANAGE YOUR SPOTS</h1> 
-            <button onClick={createNewSpot}>Create a new spot</button>
+            <button className={"grey"} onClick={createNewSpot}>Create a new spot</button>
             <div className={'tiles'}>
                 {currentUserSpots.map(spot => <SpotTile key={spot.id} spot={spot} manage={true}/> )}
             </div>

@@ -1,6 +1,10 @@
-/* TODO: Add sitewide styles 
-html, body {
-    background-color: #242424;
-    color: #ffffffde
+button:not(.navigation button) {
+    border:1px solid black;
+    background-color: red;
+    color: white;
 }
-    */
+
+button.grey:not(.navigation button) {
+    background-color: grey;
+    color: white;
+}

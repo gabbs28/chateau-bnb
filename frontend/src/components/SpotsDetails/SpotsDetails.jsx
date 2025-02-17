@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useModal } from '../../context/Modal';
 import moment from 'moment-timezone';
 
 import { getSpotData, getSpotReviewsData } from '../../store/spots';
 
 import './SpotsDetails.css';
+import PostReview from '../PostReview';
 
 function SpotsDetails() {
     const dispatch = useDispatch();
+    const { setModalContent } = useModal();
 
     //allows a component to access any path parameters in its lineage
     const params = useParams();
@@ -34,6 +37,10 @@ function SpotsDetails() {
         .filter((spotImage) => spotImage.preview == false)
         .slice(0, 4) : [];
 
+
+    const postReview = () => {
+        setModalContent(<PostReview spotId={spot.id}/>)
+    }
 
     //useEffect is watching the variables in the [] for changes to break the looping
     //dispatch data to redux to update redux store
@@ -91,7 +98,7 @@ function SpotsDetails() {
                 <div className='review-container-title'>
                     {spot.avgStarRating ?? 'New'}{/*make rating display stars*/}
                 </div>
-                <button className={'Post-Your-Review'}>
+                <button className={'post-your-review'} onClick={postReview}>
                     Post Your Review
                 </button>
             </div>

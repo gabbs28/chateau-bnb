@@ -1,19 +1,28 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { postReview } from '../../store/reviews';
+import { getSpotData, getSpotReviewsData } from '../../store/spots';
+import { useModal } from '../../context/Modal';
+import ReactStars from "react-rating-stars-component";
 
 import './PostReview.css';
 
-function PostReview() {
-    const [review, setReview] = useState("");
+function PostReview({ spotId }) {
+    const dispatch = useDispatch();
+    const { closeModal } = useModal();
 
+    const [review, setReview] = useState(null);
+    const [stars, setStars] = useState(null)
     const [errors, setErrors] = useState(
         {
-            'review': null
+            'review': null,
+            'stars': null
         }
     )
 
     const setters = {
-        'review': setReview
+        'review': setReview,
+        'stars': setStars
     }
 
     const onInputChange = event => {
@@ -37,11 +46,18 @@ function PostReview() {
 
 
         const data = {
-            review
+            review,
+            stars
         }
 
-        const request = postReview(data)
-        request.then(json => navigate(`/spots/${json.id}`)) //dc with s
+        const request = postReview(spotId, data)
+        request.then(() => Promise.all(
+            [
+                dispatch(getSpotData(spotId)),
+                dispatch(getSpotReviewsData(spotId))
+            ]
+        )) //dc with s
+            .then(() => closeModal())
             .catch(response => {
                 response.json()
                     .then(json => setErrors(json.errors))
@@ -68,7 +84,7 @@ function PostReview() {
         <div className={'post-review'}>
             <h1>How was your stay?</h1>
             <div className='field'>
-                <label htmlFor='review'>Country</label>
+                <label htmlFor='review'></label>
                 <input
                     name='review'
                     type='text'
@@ -79,10 +95,16 @@ function PostReview() {
                 {errors['review'] && (<p className='errors'>{errors['review']}</p>)}
             </div>
             <div>
-                {"need stars here"}
+                <ReactStars
+                    count={5}
+                    onChange={setStars}
+                    value={stars}
+                    size={24}
+                    activeColor="#ffd700"
+                />,
             </div>
             <div>
-                <button onClick={onSubmit}>
+                <button onClick={onSubmit} disabled={ !(review && stars)}>
                     Submit Your Review
                 </button>
             </div>
