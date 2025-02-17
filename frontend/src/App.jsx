@@ -4,6 +4,14 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation';
 import * as sessionActions from './store/session';
 
+import SpotsDetails from './components/SpotsDetails';
+import LandingPage from './components/LandingPage';
+
+import CreateSpotForm from './components/CreateSpotForm';
+import EditSpotForm from './components/EditSpotForm';
+import ManageUserSpots from './components/ManageUserSpots';
+import DeleteResource from './components/DeleteResource';
+
 function Layout() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -21,21 +29,41 @@ function Layout() {
     </>
   );
 }
-
+//routes are the entry point
 const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
       {
         path: '/',
-        element: <h1>Welcome!</h1>
+        element: <LandingPage/>
+      },
+      {
+        path: '/spots/:spotId',
+        element: <SpotsDetails />
+      },
+      {
+        path: '/spots/new',
+        element: <CreateSpotForm />
+      },
+      {
+        path: '/spots/:spotId/edit',
+        element: <EditSpotForm />
+      },
+      {
+        path: '/spots/current',
+        element: <ManageUserSpots />
+      },
+      {
+        path: '/spots/:spotId/delete',
+        element: <DeleteResource />
       }
     ]
   }
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return <RouterProvider router={router}/>;
 }
 
 export default App;

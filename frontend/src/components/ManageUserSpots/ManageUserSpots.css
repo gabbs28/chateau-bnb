@@ -1,0 +1,5 @@
+.manage-user-spots .tiles {
+    display: flex;
+    flex-direction: row;
+    margin: 100px;
+}

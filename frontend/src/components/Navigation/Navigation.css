@@ -1,21 +1,18 @@
 .navigation {
-    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    border-bottom-style: solid;
+    border-width: 1px;
+    
 }
 
-.navigation p.error {
-    color: red;
-}
+.navigation .nav-button {
+    background:white;
+    border: 1px solid lightgray; /*add my own border */
+    border-radius: 40px;
+    width: 83px;
+    height: 44px;
+    margin: 20px;
 
-.navigation h1 {
-    font-weight: bold;
-}
-
-.navigation button.feisty {
-    font-weight: bold;
-    color: red;
-}
-
-.navigation button.happy {
-    font-weight: bold;
-    color: purple;
 }

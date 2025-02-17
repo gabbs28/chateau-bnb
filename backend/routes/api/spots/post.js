@@ -85,10 +85,14 @@ Creates and returns a new spot.
 */
 
 router.post("/", requireAuth, validateSpot, async(req, res, _next) => {
+  const images = req.body.images
+  delete req.body.images;
 
   req.body.ownerId = req.user.id
+
   const spot = await Spot.create(req.body)
-  
+  await SpotImage.bulkCreate(images.map((img, index) => ({...img, spotId: spot.id, preview: index === 0})));
+
   return res.status(201).json(spot)
 })
 

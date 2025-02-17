@@ -1,0 +1,6 @@
+
+.landing-page .tiles {
+    display: flex;
+    flex-direction: row;
+    margin: 100px;
+}
