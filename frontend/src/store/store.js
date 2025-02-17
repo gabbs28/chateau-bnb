@@ -4,13 +4,15 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { thunk } from 'redux-thunk';
 import sessionReducer from './session';
 import spotsReducer from './spots';
+import reviewsReducer from './reviews';
 
 
 //all reducers are being combined 
 //argument that is passed to the useSelector function
 const rootReducer = combineReducers({
   session: sessionReducer, //const initialState = { user: null };
-  spots: spotsReducer  //const initialState = {spot: {}, allSpots: {}};
+  spots: spotsReducer , //const initialState = {spot: {}, allSpots: {}};
+  reviews: reviewsReducer
 });
 
 let enhancer;

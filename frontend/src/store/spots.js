@@ -159,14 +159,6 @@ export const deleteSpot = async (id) => {
         .then(response => response.json())
 }
 
-export const deleteReview = async (id) => {
-    return csrfFetch(`/api/reviews/${id}`, {
-        method: 'DELETE',
-
-    })
-        .then(response => response.json())
-}
-
 /* define a default state
 this will be the initial state of the store */
 //when I add an addition thunk I need to add another key/value

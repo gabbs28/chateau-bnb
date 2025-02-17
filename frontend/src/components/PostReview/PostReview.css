@@ -1,0 +1,21 @@
+.post-review {
+    font-family: Arial, sans-serif;
+}
+
+.post-review p.error {
+    color: red;
+}
+
+.post-review h1 {
+    font-weight: bold;
+}
+
+.post-review button.feisty {
+    font-weight: bold;
+    color: red;
+}
+
+.post-review button.happy {
+    font-weight: bold;
+    color: purple;
+}

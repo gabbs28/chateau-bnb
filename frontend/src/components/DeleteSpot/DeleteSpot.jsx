@@ -11,7 +11,7 @@ function DeleteSpot({id}) {
         <div className={'delete-spot'}>
             <DeleteResource 
                 type={"Spot"} 
-                action={async () => deleteSpot(id)} 
+                action={async () => await deleteSpot(id)} 
                 refresh={getCurrentUserSpotsData}
             />
         </div>

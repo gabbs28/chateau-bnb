@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import moment from 'moment-timezone';
 
 import { getSpotData, getSpotReviewsData } from '../../store/spots';
 
@@ -95,15 +96,19 @@ function SpotsDetails() {
                 </button>
             </div>
             <div className='review-container'>
-                <div className='review-name'>
-                    {spotReviews.map((review) => review.User.firstName)}
-                </div>
-                <div className='review-date'>
-                    {spotReviews.map((review) => review.createdAt)}
-                </div>
-                <div className='review-description'>
-                    {spotReviews.map((review) => review.review)}
-                </div> 
+                {spotReviews.map((review) => (
+                    <div className='review-tile'>
+                        <div className='review-name'>
+                            {review.User.firstName}
+                        </div>
+                        <div className='review-date'>
+                            {moment(review.createdAt).format("MMMM YYYY")}
+                        </div>
+                        <div className='review-description'>
+                            {review.review}
+                        </div>
+                    </div>
+                ))}
             </div>
 
 
