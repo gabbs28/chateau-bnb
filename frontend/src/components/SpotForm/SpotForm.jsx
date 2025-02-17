@@ -91,7 +91,7 @@ function SpotForm({ spot = null }) {
 
     }
 
-    const onSubmit = event => {
+    const onSubmit = () => {
         //errors dont show until button is clicked
         const valid = validate()
         if (!valid) {

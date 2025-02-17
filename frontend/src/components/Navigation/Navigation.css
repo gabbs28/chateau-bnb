@@ -1,6 +1,7 @@
 .navigation {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    position: relative;
     border-bottom-style: solid;
     border-width: 1px;
     

@@ -6,6 +6,8 @@ name at end of url shown bbe same as variable name*/
 const GET_SPOT = "spots/getSpot"
 const GET_ALL_SPOTS = "spots/getAllSpots"
 const GET_SPOT_REVIEWS = "spots/getSpotReviews"
+const GET_CURRENT_USER_SPOTS = "spots/getCurrentUserSpots"
+
 
 
 /* define actions
@@ -29,6 +31,13 @@ const getSpotReviewsAction = (spotReviews) => {
     return {
         type: GET_SPOT_REVIEWS,
         payload: spotReviews
+    }
+}
+
+const getCurrentUserSpotsAction = (currentUserSpots) => {
+    return {
+        type: GET_CURRENT_USER_SPOTS,
+        payload: currentUserSpots
     }
 }
 
@@ -103,10 +112,21 @@ export const getAllSpotsData = () => {
 
 export const getSpotReviewsData = (spotId) => {
     return async (dispatch) => {
-        return csrfFetch(`/api/spots/${spotId}`)
+        return csrfFetch(`/api/spots/${spotId}/reviews`)
         .then(response => response.json()) //api communicates in json
             .then(spotReviewsData => {
                 dispatch(getSpotReviewsAction(spotReviewsData)); 
+            })
+    }
+}
+
+export const getCurrentUserSpotsData = () => {
+    return async (dispatch) => {
+        //api call
+        return csrfFetch("/api/spots/current")
+            .then(response => response.json()) //api communicates in json
+            .then(currentUserSpotsData => {
+                dispatch(getCurrentUserSpotsAction(currentUserSpotsData)); 
             })
     }
 }
@@ -131,13 +151,31 @@ export const putSpot = async (id, spot) => {
         .then(response => response.json())
 }
 
+export const deleteSpot = async (id) => {
+    return csrfFetch(`/api/spots/${id}`, {
+        method: 'DELETE',
+
+    })
+        .then(response => response.json())
+}
+
+export const deleteReview = async (id) => {
+    return csrfFetch(`/api/reviews/${id}`, {
+        method: 'DELETE',
+
+    })
+        .then(response => response.json())
+}
+
 /* define a default state
 this will be the initial state of the store */
 //when I add an addition thunk I need to add another key/value
 const initialState = {
     spot: {},
     allSpots: [],
-    spotReviews: []
+    spotReviews: [],
+    currentUserSpots: []
+
 };
 
 
@@ -156,6 +194,8 @@ const spotsReducer = (state = initialState, action) => {
             return { ...state, allSpots: action.payload.Spots}
         case GET_SPOT_REVIEWS:
             return { ...state, spotReviews: action.payload.Reviews}
+        case GET_CURRENT_USER_SPOTS:
+            return { ...state, currentUserSpots: action.payload.Spots}
       default:
         return state;
     }

@@ -1,7 +1,9 @@
 import './Navigation.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton/ProfileButton';
+import chateauLogo from './chateauLogo.png'
+import { FaUserCircle } from 'react-icons/fa';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
@@ -10,6 +12,9 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className={'navigation'}>
+      <Link to='/'>
+        <img src={chateauLogo} height={60}></img>
+      </Link>
       <div>
         <ul>
           <li>

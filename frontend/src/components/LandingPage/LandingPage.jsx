@@ -23,7 +23,7 @@ function LandingPage() {
     //The HTML that makes up the component
     return isLoaded ? (
         <div className={'landing-page'}>
-            <h1>CHATEAU BNB</h1> 
+            
             <div className={'tiles'}>
                 {allSpots.map(spot => <SpotTile key={spot.id} spot={spot}/> )}
             </div>

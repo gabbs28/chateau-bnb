@@ -1,0 +1,21 @@
+.delete-spot {
+    font-family: Arial, sans-serif;
+}
+
+.delete-spot p.error {
+    color: red;
+}
+
+.delete-spot h1 {
+    font-weight: bold;
+}
+
+.delete-spot button.feisty {
+    font-weight: bold;
+    color: red;
+}
+
+.delete-spot button.happy {
+    font-weight: bold;
+    color: purple;
+}

@@ -1,21 +1,5 @@
-.manage-user-spots {
-    font-family: Arial, sans-serif;
-}
-
-.manage-user-spots p.error {
-    color: red;
-}
-
-.manage-user-spots h1 {
-    font-weight: bold;
-}
-
-.manage-user-spots button.feisty {
-    font-weight: bold;
-    color: red;
-}
-
-.manage-user-spots button.happy {
-    font-weight: bold;
-    color: purple;
+.manage-user-spots .tiles {
+    display: flex;
+    flex-direction: row;
+    margin: 100px;
 }

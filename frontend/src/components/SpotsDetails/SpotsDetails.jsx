@@ -20,6 +20,7 @@ function SpotsDetails() {
     //const initialState = {spot: {}, allSpots: {}};
     const spot = useSelector(store => store.spots.spot)
     const spotReviews = useSelector(store => store.spots.spotReviews)
+    console.log("This is spotReviews", spotReviews)
   
 
     const previewImg = isLoaded ? spot.SpotImages
@@ -36,8 +37,12 @@ function SpotsDetails() {
     //useEffect is watching the variables in the [] for changes to break the looping
     //dispatch data to redux to update redux store
     useEffect(() => {
-        dispatch(getSpotData(params.spotId))
-            .then(() => setIsLoaded(true))
+        Promise.all(
+            [
+                dispatch(getSpotData(params.spotId)), 
+                dispatch(getSpotReviewsData(params.spotId))
+            ]
+        ).then(() => setIsLoaded(true))
     }, [dispatch, params.spotId]);
 
     //const smallImg = spot.SpotImages?.filter((spotImage) => spotImage.previewImage != true)
@@ -89,8 +94,16 @@ function SpotsDetails() {
                     Post Your Review
                 </button>
             </div>
-            <div>
-                {/*Reviews*/}
+            <div className='review-container'>
+                <div className='review-name'>
+                    {spotReviews.map((review) => review.User.firstName)}
+                </div>
+                <div className='review-date'>
+                    {spotReviews.map((review) => review.createdAt)}
+                </div>
+                <div className='review-description'>
+                    {spotReviews.map((review) => review.review)}
+                </div> 
             </div>
 
 

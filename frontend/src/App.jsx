@@ -9,6 +9,8 @@ import LandingPage from './components/LandingPage';
 
 import CreateSpotForm from './components/CreateSpotForm';
 import EditSpotForm from './components/EditSpotForm';
+import ManageUserSpots from './components/ManageUserSpots';
+import DeleteResource from './components/DeleteResource';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -50,7 +52,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/spots/current',
-        element: <h1>Manage User Spots</h1>
+        element: <ManageUserSpots />
+      },
+      {
+        path: '/spots/:spotId/delete',
+        element: <DeleteResource />
       }
     ]
   }
