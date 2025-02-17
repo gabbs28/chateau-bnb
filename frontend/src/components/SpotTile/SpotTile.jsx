@@ -9,11 +9,13 @@ function SpotTile({ spot = null, manage = false}) {
     const navigate = useNavigate();
     const { setModalContent } = useModal();
 
-    const updateSpot = () => {
+    const updateSpot = (event) => {
+        event.preventDefault();
         navigate(`/spots/${spot.id}/edit`)
     }
 
-    const deleteSpot = () => {
+    const deleteSpot = (event) => {
+        event.preventDefault();
         setModalContent(<DeleteSpot id={spot.id}/>)
     }
 
