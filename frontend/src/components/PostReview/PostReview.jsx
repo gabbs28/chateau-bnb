@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { postReview } from '../../store/reviews';
 import { getSpotData, getSpotReviewsData } from '../../store/spots';

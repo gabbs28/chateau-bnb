@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
 import { useModal } from '../../context/Modal';
 

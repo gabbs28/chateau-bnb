@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import moment from 'moment-timezone';
@@ -104,7 +104,7 @@ function SpotsDetails() {
             </div>
             <div className='review-container'>
                 {spotReviews.map((review) => (
-                    <div className='review-tile'>
+                    <div className='review-tile' key={review.id}>
                         <div className='review-name'>
                             {review.User.firstName}
                         </div>
