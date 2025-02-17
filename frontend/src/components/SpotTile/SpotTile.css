@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     margin: 15px;
-    
 }
 
 .spot-tile img {
@@ -10,16 +9,12 @@
 }
 
 .spot-tile .location-rating {
+    padding: 0px;
     display: flex;
-    font-weight: 400;
+    justify-content: space-between;
+    align-items: center;
 
-}
-
-.spot-tile .text {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 300;
-}
-
-.spot-tile .be-bold {
-    font-weight: bold;
+    svg {
+        margin-right: 5px;
+    }
 }

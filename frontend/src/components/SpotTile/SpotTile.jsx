@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
 import { useModal } from '../../context/Modal';
 
@@ -19,22 +19,21 @@ function SpotTile({ spot = null, manage = false}) {
 
     //The HTML that makes up the component
     return (
-        <div className={'spot-tile'} >
-
+        <Link className={'spot-tile'} to={`/spots/${spot.id}`} title={spot.name}>
             {!spot ? (<h1>No spot provided</h1>) : (
                 <>
                     <div>
-                        <img src={spot.previewImage} className={'img'} alt="IMG" width="350" height="335" />
+                        <img src={spot.previewImage} className={'img'} alt={spot.name} width="350" height="335" />
                     </div>
                     <div className='text'>
                         <div className='location-rating'>
                             <p>{spot.city}, {spot.state}</p>
                             <div className='rating'>
-                                <h5><FaStar />{spot.avgRating ? spot.avgRating : "New"}</h5>{}
+                                <FaStar color={'black'} />
+                                <span>{spot.avgRating ? spot.avgRating : "New"}</span>
                             </div>
                         </div>
-
-                        <p><span className='be-bold'>${spot.price}</span> night</p>
+                        <p><b>${spot.price}</b> night</p>
                     </div>
                     <div hidden={!manage}>
                         <button className={"grey"} onClick={updateSpot}>
@@ -46,7 +45,7 @@ function SpotTile({ spot = null, manage = false}) {
                     </div>
                 </>
             )}
-        </div>
+        </Link>
     );
 }
 

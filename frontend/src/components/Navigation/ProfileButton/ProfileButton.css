@@ -1,0 +1,71 @@
+.profile-button-container {
+    span {
+        padding: 10px;
+    }
+
+    .profile-button {
+        display: flex;
+        align-items: center;
+        border: 2px solid black;
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 20px;
+        background-color: #f0f0f0;
+
+        button {
+            margin-right: 5px;
+        }
+
+        button:last-child {
+            margin-right: 0;
+        }
+
+        svg {
+            height: 20px;
+            width: 20px;
+            color: black;
+        }
+    }
+
+    .profile-dropdown {
+        position: absolute;
+        top: 65px;
+        right: 20px;
+        background: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        width: 150px
+    }
+
+    .user-details,
+    .auth-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border: 2px solid black;
+
+        button {
+            border: none;
+            background-color: white;
+            color: black;
+            text-align: left;
+            cursor: pointer;
+        }
+    }
+
+    .modal-menu-item {
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 5px;
+        transition: background 0.2s;
+    }
+
+    .modal-menu-item:hover {
+        background: #f0f0f0;
+    }
+
+    .user-details {
+        display: flex;
+        flex-direction: column;
+    }
+}
