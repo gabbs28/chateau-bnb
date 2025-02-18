@@ -24,8 +24,8 @@ function SpotTile({ spot = null, manage = false}) {
         <Link className={'spot-tile'} to={`/spots/${spot.id}`} title={spot.name}>
             {!spot ? (<h1>No spot provided</h1>) : (
                 <>
-                    <div>
-                        <img src={spot.previewImage} className={'img'} alt={spot.name} width="350" height="335" />
+                    <div className='image-container'>
+                        <img src={spot.previewImage} className={'img'} alt={spot.name} />
                     </div>
                     <div className='text'>
                         <div className='location-rating'>
@@ -35,15 +35,19 @@ function SpotTile({ spot = null, manage = false}) {
                                 <span>{spot.avgRating ? spot.avgRating : "New"}</span>
                             </div>
                         </div>
-                        <p><b>${spot.price}</b> night</p>
+                        <div className={'price'}>
+                            <p><b>${spot.price}</b> night</p>
+                        </div>
                     </div>
-                    <div hidden={!manage}>
-                        <button className={"grey"} onClick={updateSpot}>
-                            Update
-                        </button>
-                        <button className={"grey"} onClick={deleteSpot}>
-                            Delete
-                        </button>
+                    <div className={'button-container'} >
+                        <div hidden={!manage}>
+                            <button className={"grey"} onClick={updateSpot}>
+                                Update
+                            </button>
+                            <button className={"grey"} onClick={deleteSpot}>
+                                Delete
+                            </button>
+                        </div>
                     </div>
                 </>
             )}

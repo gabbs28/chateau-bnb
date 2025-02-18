@@ -1,5 +1,12 @@
-.manage-user-spots .tiles {
-    display: flex;
-    flex-direction: row;
-    margin: 100px;
+.manage-user-spots {
+    button {
+        margin-bottom: 20px;
+    }
+
+    .spot-tiles {
+        display: grid;
+        grid-template-columns: repeat(4, 300px);
+        gap: 10px;
+        margin-bottom: 10px;
+    }
 }

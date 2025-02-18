@@ -1,17 +1,24 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useModal } from '../../context/Modal';
+import {useState, useEffect} from 'react';
+import {useParams} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {useModal} from '../../context/Modal';
 import moment from 'moment-timezone';
 
-import { getSpotData, getSpotReviewsData } from '../../store/spots';
+import {FaStar} from "react-icons/fa";
+import {TbPointFilled} from "react-icons/tb";
+
+import {getSpotData, getSpotReviewsData} from '../../store/spots';
+
+import PostReview from '../PostReview';
+import DeleteReview from "../DeleteReview/";
 
 import './SpotsDetails.css';
-import PostReview from '../PostReview';
+
+import ComingSoon from './comingsoon.jpeg';
 
 function SpotsDetails() {
     const dispatch = useDispatch();
-    const { setModalContent } = useModal();
+    const {setModalContent} = useModal();
 
     //allows a component to access any path parameters in its lineage
     const params = useParams();
@@ -22,32 +29,46 @@ function SpotsDetails() {
     //useSelector is similar to useState -> will cause infinite loop     
     //useSelector is used to access data from the store (redux)      
     //const initialState = {spot: {}, allSpots: {}};
+    const user = useSelector(state => state.session.user)
     const spot = useSelector(store => store.spots.spot)
     const spotReviews = useSelector(store => store.spots.spotReviews)
-    console.log("This is spotReviews", spotReviews)
-  
 
     const previewImg = isLoaded ? spot.SpotImages
-        .filter((spotImage) => spotImage.preview == true)
+        .filter((spotImage) => spotImage.preview === true)
         .shift() : {};
     //does the same as top code,  ? is optional chaining
     // let previewImg = spot.SpotImages?.find((spotImage) => spotImage.preview == true);
 
     const previewSmolImg = isLoaded ? spot.SpotImages
-        .filter((spotImage) => spotImage.preview == false)
+        .filter((spotImage) => spotImage.preview === false)
         .slice(0, 4) : [];
 
+    //Add placeholder images
+    while (previewSmolImg.length < 4) {
+        previewSmolImg.push({url: ComingSoon})
+    }
+
+    const reserve = () => {
+        alert('Feature coming soon!')
+    }
 
     const postReview = () => {
         setModalContent(<PostReview spotId={spot.id}/>)
     }
+
+    const deleteReview = (reviewId) => {
+        setModalContent(<DeleteReview spotId={spot.id} reviewId={reviewId} />)
+    }
+
+    const owner = spot?.ownerId === user?.id;
+    const reviewed = spotReviews?.filter(review => review.userId === user?.id).length > 0;
 
     //useEffect is watching the variables in the [] for changes to break the looping
     //dispatch data to redux to update redux store
     useEffect(() => {
         Promise.all(
             [
-                dispatch(getSpotData(params.spotId)), 
+                dispatch(getSpotData(params.spotId)),
                 dispatch(getSpotReviewsData(params.spotId))
             ]
         ).then(() => setIsLoaded(true))
@@ -63,62 +84,83 @@ function SpotsDetails() {
                 <h1>{spot.name}</h1>
                 <h3>{spot.city}, {spot.state}, {spot.country}</h3>
             </div>
-            <div className={'img-container'}>
-                <div>
-                    <img src={previewImg?.url} className={"Large-img"} alt="IMG" width="560" height="371" />
+            <div className={'image-container'}>
+                <div className={'image-large'}>
+                    <img src={previewImg?.url} alt="img" />
                 </div>
-                <div>
-                    {previewSmolImg.map(spotImage => <img key={spotImage.id} src={spotImage.url} className={"Small-img"} alt="IMG" width="277" height="183.69" />)}
+                { previewSmolImg.map(
+                    spotImage => (
+                        <div key={spotImage.id} className={'image-small'}>
+                            <img src={spotImage.url} alt="img" />
+                        </div>
+                    )
+                )}
+            </div>
+            <div className='spot-details'>
+                <div className={'left'}>
+                    <div className={'host'}>
+                        Hosted by {spot.Owner.firstName} {spot.Owner.lastName}
+                    </div>
+                    <div className={'description'}>
+                        {spot.description}
+                    </div>
+                </div>
+                <div className={'right'}>
+                    <div className='reserve'>
+                        <span>${spot.price.toFixed(2)}</span>
+                        <div>
+                            {spot.avgStarRating ? (
+                                <>
+                                    <FaStar />
+                                    <span>{spot.avgStarRating.toFixed(1)}</span>
+                                    <TbPointFilled />
+                                    <span>{spot.numReviews} reviews</span>
+                                </>
+                            ) : 'New' }
+                        </div>
+                    </div>
+                    <button onClick={reserve}>
+                        Reserve
+                    </button>
                 </div>
             </div>
-            <div className={'host'}>
-                Hosted by {spot.Owner.firstName} {spot.Owner.lastName}
-            </div>
-            <div className={'desc-reserve'} width="654" height="144">
-                <p>
-                    {spot.description}
-                </p>
-                <table className={'table-box'}>
-                    <tbody>
-                        <tr>
-                            <td>${spot.price} night</td>
-                            <td>{spot.avgStarRating ?? 'New'}{/*make rating display stars*/}</td>
-                        </tr>
-                        <tr>
-                            <td colSpan={2}>
-                                <button className={'Reserve'}>
-                                    Reserve
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div>
-                <div className='review-container-title'>
-                    {spot.avgStarRating ?? 'New'}{/*make rating display stars*/}
-                </div>
-                <button className={'post-your-review'} onClick={postReview}>
+            <div className='review-details'>
+                {spot.avgStarRating ? (
+                    <div className={'statistics'}>
+                        <FaStar />
+                        <span>{spot.avgStarRating.toFixed(1)}</span>
+                        <TbPointFilled />
+                        <span>
+                            {spot.numReviews} reviews
+                        </span>
+                    </div>
+                ) : 'New' }
+                <button onClick={postReview} className={'grey'} hidden={owner || reviewed}>
                     Post Your Review
                 </button>
             </div>
             <div className='review-container'>
                 {spotReviews.map((review) => (
-                    <div className='review-tile' key={review.id}>
-                        <div className='review-name'>
+                    <div className='review' key={review.id}>
+                        <div className='name'>
                             {review.User.firstName}
                         </div>
-                        <div className='review-date'>
+                        <div className='date'>
                             {moment(review.createdAt).format("MMMM YYYY")}
                         </div>
-                        <div className='review-description'>
+                        <div className='description'>
                             {review.review}
                         </div>
+                        <button
+                            onClick={() => deleteReview(review.id)}
+                            className={'grey'}
+                            hidden={review.userId !== user?.id}
+                        >
+                            Delete
+                        </button>
                     </div>
                 ))}
             </div>
-
-
         </div>
     ) : (<h1>...loading</h1>) //love this add fun icon
 }

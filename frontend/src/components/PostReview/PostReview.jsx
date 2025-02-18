@@ -35,7 +35,6 @@ function PostReview({ spotId }) {
 
         //Invoke the setter function and update the value
         setter(value);
-
     }
 
     const onSubmit = () => {
@@ -43,7 +42,6 @@ function PostReview({ spotId }) {
         if (!valid) {
             return
         }
-
 
         const data = {
             review,
@@ -56,7 +54,7 @@ function PostReview({ spotId }) {
                 dispatch(getSpotData(spotId)),
                 dispatch(getSpotReviewsData(spotId))
             ]
-        )) //dc with s
+        ))
             .then(() => closeModal())
             .catch(response => {
                 response.json()
@@ -75,8 +73,6 @@ function PostReview({ spotId }) {
         setErrors(current)
 
         return Object.keys(current).length === 0
-
-
     }
 
     //The HTML that makes up the component
@@ -85,23 +81,22 @@ function PostReview({ spotId }) {
             <h1>How was your stay?</h1>
             <div className='field'>
                 <label htmlFor='review'></label>
-                <input
+                <textarea
                     name='review'
-                    type='text'
                     placeholder='Leave your review here...'
                     value={review}
                     onChange={onInputChange}
                 />
                 {errors['review'] && (<p className='errors'>{errors['review']}</p>)}
             </div>
-            <div>
+            <div className={'stars-container'}>
                 <ReactStars
                     count={5}
                     onChange={setStars}
                     value={stars}
                     size={24}
                     activeColor="#ffd700"
-                />,
+                />
             </div>
             <div>
                 <button onClick={onSubmit} disabled={ !(review && stars)}>

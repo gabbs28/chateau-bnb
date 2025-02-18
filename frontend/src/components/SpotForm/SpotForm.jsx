@@ -210,10 +210,7 @@ function SpotForm({ spot = null }) {
         setErrors(current)
 
         return Object.keys(current).length === 0
-
     }
-
-
 
     //The HTML that makes up the component
     return (

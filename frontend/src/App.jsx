@@ -25,7 +25,7 @@ function Layout() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && <Outlet />}
+      {isLoaded && <div className={'content'}><Outlet /></div>}
     </>
   );
 }

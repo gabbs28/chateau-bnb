@@ -2,9 +2,10 @@ import DeleteResource from '../DeleteResource';
 import { deleteSpot, getCurrentUserSpotsData } from '../../store/spots';
 
 import './DeleteSpot.css';
+import {useDispatch} from "react-redux";
 
 function DeleteSpot({id}) {
-    
+    const dispatch = useDispatch();
 
     //The HTML that makes up the component
     return (
@@ -12,7 +13,7 @@ function DeleteSpot({id}) {
             <DeleteResource 
                 type={"Spot"} 
                 action={async () => await deleteSpot(id)} 
-                refresh={getCurrentUserSpotsData}
+                refresh={() => dispatch(getCurrentUserSpotsData())}
             />
         </div>
     );

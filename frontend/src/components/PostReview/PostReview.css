@@ -1,21 +1,23 @@
 .post-review {
-    font-family: Arial, sans-serif;
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    width: 400px;
 
-.post-review p.error {
-    color: red;
-}
+    h1 {
+        margin: 0;
+        padding-bottom: 10px;
+    }
 
-.post-review h1 {
-    font-weight: bold;
-}
+    textarea {
+        width: 350px;
+        height: 200px;
+        border: 2px solid black;
+        font-size: inherit;
+    }
 
-.post-review button.feisty {
-    font-weight: bold;
-    color: red;
-}
-
-.post-review button.happy {
-    font-weight: bold;
-    color: purple;
+    .stars-container {
+        padding-bottom: 10px;
+    }
 }

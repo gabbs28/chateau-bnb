@@ -1,6 +1,8 @@
-
-.landing-page .tiles {
-    display: flex;
-    flex-direction: row;
-    margin: 100px;
+.landing-page {
+    .spot-tiles {
+        display: grid;
+        grid-template-columns: repeat(4, 300px);
+        gap: 10px;
+        margin-bottom: 10px;
+    }
 }

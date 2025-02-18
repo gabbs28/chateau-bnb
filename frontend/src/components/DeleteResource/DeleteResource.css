@@ -1,21 +1,17 @@
 .delete-resource {
-    font-family: Arial, sans-serif;
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    width: 400px;
 
-.delete-resource p.error {
-    color: red;
-}
+    h1, p {
+        margin: 0;
+        padding-bottom: 10px;
+    }
 
-.delete-resource h1 {
-    font-weight: bold;
-}
-
-.delete-resource button.feisty {
-    font-weight: bold;
-    color: red;
-}
-
-.delete-resource button.happy {
-    font-weight: bold;
-    color: purple;
+    button {
+        display: block;
+        width: 100%;
+    }
 }

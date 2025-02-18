@@ -3,6 +3,13 @@ html, body {
     font-size: 16px;
 }
 
+.content {
+    width: 1204px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+}
+
 a:link {
     text-decoration: none;
     color: black;
@@ -24,15 +31,19 @@ a:active {
 button {
     font-family: inherit;
     font-size: inherit;
+    cursor: pointer;
 }
 
-button:not(.navigation button) {
-    border:1px solid black;
+button:not(.navigation-container button) {
+    border: 1px solid black;
     background-color: red;
     color: white;
+    box-shadow: 3px 3px 0 black;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
-button.grey:not(.navigation button) {
+button.grey:not(.navigation-container button) {
     background-color: grey;
     color: white;
 }

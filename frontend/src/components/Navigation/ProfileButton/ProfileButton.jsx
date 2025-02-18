@@ -17,8 +17,10 @@ function ProfileButton({user}) {
     const navigate = useNavigate();
     const [showMenu, setShowMenu] = useState(false);
 
-    const toggleMenu = (e) => {
-        e.stopPropagation();
+    const toggleMenu = event => {
+        event.preventDefault();
+        event.stopPropagation();
+
         setShowMenu(!showMenu);
     };
 
@@ -27,8 +29,8 @@ function ProfileButton({user}) {
             return;
         }
 
-        const closeMenu = (e) => {
-            if (ulRef.current && !ulRef.current.contains(e.target)) {
+        const closeMenu = event => {
+            if (ulRef.current && !ulRef.current.contains(event.target)) {
                 setShowMenu(false);
             }
         };
@@ -38,10 +40,12 @@ function ProfileButton({user}) {
         return () => document.removeEventListener('click', closeMenu);
     }, [showMenu]);
 
-    const demoLogin = (e) => {
-        e.preventDefault();
-        dispatch(sessionActions.login({credential: 'Demo-lition', password: 'password'}))
-            .then(toggleMenu)
+    const login = (event, credential, password) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        dispatch(sessionActions.login({credential, password}))
+            .then(() => toggleMenu(event))
     };
 
     const closeMenu = () => {
@@ -69,10 +73,10 @@ function ProfileButton({user}) {
                 {user ? (
                     <div className='user-details'>
                         <span>Hello, {user.firstName}!</span>
-                        <span>Email: {user.email}</span>
-                        <button className='manage-spots'>
-                            <Link to='/spots/current'>Manage Spots</Link>
-                        </button>
+                        <span>{user.email}</span>
+                        <div>---</div>
+                        <Link to='/spots/current'>Manage Spots</Link>
+                        <div>---</div>
                         <button onClick={logout} className='logout'>
                             Log Out
                         </button>
@@ -89,7 +93,21 @@ function ProfileButton({user}) {
                             onButtonClick={closeMenu}
                             modalComponent={<SignupFormModal/>}
                         />
-                        <button onClick={demoLogin}>Demo Login</button>
+                        <button
+                            onClick={event => login(event, 'Demo-lition', 'password')}
+                        >
+                            Demo Login
+                        </button>
+                        <button
+                            onClick={event => login(event, 'FakeUser1', 'password2')}
+                        >
+                            Fakeuser1
+                        </button>
+                        <button
+                            onClick={event => login(event, 'FakeUser2', 'password3')}
+                        >
+                            Fakeuser2
+                        </button>
                     </div>
                 )}
             </div>

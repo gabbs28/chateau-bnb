@@ -1,10 +1,6 @@
 .spot-form {
-    font-family: Arial, sans-serif;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 600px;
-    margin-right: 600px
-    
+    margin: 0 auto;
+    width: 600px;
 }
 
 .spot-form .section {

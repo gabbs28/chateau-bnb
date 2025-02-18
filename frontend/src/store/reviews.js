@@ -30,7 +30,13 @@ export const deleteReview = async (id) => {
         method: 'DELETE',
 
     })
-        .then(response => response.json())
+        .then(response => {
+            const json = response.json()
+
+            console.log('delete review', response, json)
+
+            return json;
+        })
 }
 
 /* define a default state

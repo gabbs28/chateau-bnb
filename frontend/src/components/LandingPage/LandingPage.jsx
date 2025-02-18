@@ -23,7 +23,7 @@ function LandingPage() {
     return isLoaded ? (
         <div className={'landing-page'}>
             
-            <div className={'tiles'}>
+            <div className={'spot-tiles'}>
                 {allSpots.map(spot => <SpotTile key={spot.id} spot={spot}/> )}
             </div>
         </div>

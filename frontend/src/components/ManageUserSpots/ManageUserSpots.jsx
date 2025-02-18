@@ -28,9 +28,9 @@ function ManageUserSpots() {
     //The HTML that makes up the component
     return isLoaded ? (
         <div className={'manage-user-spots'}>
-            <h1>MANAGE YOUR SPOTS</h1> 
-            <button className={"grey"} onClick={createNewSpot}>Create a new spot</button>
-            <div className={'tiles'}>
+            <h1>Manage Spots</h1>
+            <button onClick={createNewSpot} className={'grey'}>Create a new spot</button>
+            <div className={'spot-tiles'}>
                 {currentUserSpots.map(spot => <SpotTile key={spot.id} spot={spot} manage={true}/> )}
             </div>
         </div>

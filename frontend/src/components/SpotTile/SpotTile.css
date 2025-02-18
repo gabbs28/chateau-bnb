@@ -1,20 +1,48 @@
 .spot-tile {
     display: flex;
     flex-direction: column;
-    margin: 15px;
-}
 
-.spot-tile img {
-    border-radius: 13px;
-}
+    .image-container {
+        display: block;
 
-.spot-tile .location-rating {
-    padding: 0px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+        img {
+            border-radius: 20px;
+            width: 300px;
+            height: 226px;
+            object-fit: cover;
+        }
+    }
 
-    svg {
-        margin-right: 5px;
+    .text {
+        p {
+            margin: 0;
+        }
+
+        .location-rating {
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+
+            svg {
+                margin-right: 5px;
+            }
+        }
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: row;
+        margin-top: 10px;
+
+        button {
+            margin-right: 10px;
+        }
+
+        button:last-child {
+            margin-right: 0;
+        }
     }
 }
